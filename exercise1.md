@@ -1,0 +1,9 @@
+Let's say the project is written in Python.
+
+For linting there seems to be multiple good candidates, such as Pylint and Flake8. Pylint has been around for more that 20 years and is being well maintained. Flake8 is newer and faster than Pylint, but on the other hand Pylint is said to be more thorough and cause less false positives.
+Popular framework for testing is the Robot framework, it is versatile and can be used for end-to-end tests as well as api-tests. For running unit tests a framework such as PyTest can be a bit simpler to configure and use.
+Since python is an interpeted language, there is no actual build process, there are multiple ways to create a CI/CD pipeline thought.
+
+Besides github actions and jenkins there are plenty of options for building CI/CD pipeline. Semaphore and Travis CI are popular cloud based solutions that works on multiple languages, including python, however they no longer provide free tiers for smaller projects. On the other hand GitLab and Circle CI still have free tiers for trying out their services. Drone CI is another platform, it can be hosted locally and it has a free open source version as well as a paid version for enterprices.
+
+Whether the pipeline should be self-hosted or cloud-based depends on the team. The number of developers being quite small, a cloud-based solution could be more flexible. The access to the system would be unified and perhaps simpler than when using a dedicated server on-site. On the other hand if the team is a part of a bigger company and has access to servers and technical support on site, running self-hosted pipeline can be more secure and simpler to use.
