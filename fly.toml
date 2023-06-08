@@ -6,22 +6,16 @@
 app = "fullstack-11-cicd"
 primary_region = "arn"
 
-[[services]]
-  internal_port = 8080
-  processes = ["app"]
-
-[deploy]
-  release_command = "npm run build"
-
-[processes]
-  app = "node app.js"
+[env]
+  PORT = "8080"
 
 [build]
   [build.args]
     NODE_VERSION = "16.20.0"
 
-[env]
-  PORT = "8080"
+[[services]]
+  internal_port = 8080
+  processes = ["app"]
 
 [[services.tcp_checks]]
     grace_period = "1s"
@@ -39,3 +33,9 @@ primary_region = "arn"
     timeout = 2000
     tls_skip_verify = false
     [services.http_checks.headers]
+
+[deploy]
+  release_command = "npm run build"
+
+[processes]
+  app = "node app.js"
