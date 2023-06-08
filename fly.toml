@@ -3,9 +3,6 @@
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-[env]
-  PORT = "8080"
-
 app = "fullstack-11-cicd"
 primary_region = "arn"
 
@@ -27,3 +24,6 @@ primary_region = "arn"
 [build]
   [build.args]
     NODE_VERSION = "16.20.0"
+
+[env]
+  PORT = "8080"
