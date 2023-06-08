@@ -3,11 +3,14 @@
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
+[env]
+  PORT = "8080"
+
 app = "fullstack-11-cicd"
 primary_region = "arn"
 
 [http_service]
-  internal_port = 5000
+  internal_port = 8080
   force_https = true
   auto_stop_machines = true
   auto_start_machines = true
