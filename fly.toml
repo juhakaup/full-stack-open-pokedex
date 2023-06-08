@@ -6,12 +6,8 @@
 app = "fullstack-11-cicd"
 primary_region = "arn"
 
-[http_service]
+[[services]]
   internal_port = 8080
-  force_https = true
-  auto_stop_machines = true
-  auto_start_machines = true
-  min_machines_running = 0
   processes = ["app"]
 
 [deploy]
@@ -27,13 +23,13 @@ primary_region = "arn"
 [env]
   PORT = "8080"
 
-  [[http_service.tcp_checks]]
+[[services.tcp_checks]]
     grace_period = "1s"
     interval = "15s"
     restart_limit = 0
     timeout = "2s"
 
-  [[http_service.http_checks]]
+[[services.http_checks]]
     interval = 10000
     grace_period = "5s"
     method = "get"
@@ -42,4 +38,4 @@ primary_region = "arn"
     restart_limit = 0
     timeout = 2000
     tls_skip_verify = false
-    [http_service.http_checks.headers]
+    [services.http_checks.headers]
