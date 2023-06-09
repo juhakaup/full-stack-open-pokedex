@@ -6,8 +6,15 @@
 app = "fullstack-11-cicd"
 primary_region = "arn"
 
-[env]
-  PORT = "8080"
+[experimental]
+  auto_rollback = true
+
+[deploy]
+  release_command = "npm run build"
+  strategy = "canary"
+
+[processes]
+  app = "node app.js"
 
 [build]
   [build.args]
@@ -16,26 +23,33 @@ primary_region = "arn"
 [[services]]
   internal_port = 8080
   processes = ["app"]
+  protocol = "tcp"
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
 
-[[services.tcp_checks]]
-    grace_period = "1s"
-    interval = "15s"
-    restart_limit = 0
-    timeout = "2s"
+  [[services.ports]]
+  handlers = ["http"]
+  port = 80
+  force_https = true
 
-[[services.http_checks]]
-    interval = 10000
-    grace_period = "5s"
-    method = "get"
-    path = "/health"
-    protocol = "http"
-    restart_limit = 0
-    timeout = 2000
-    tls_skip_verify = false
-    [services.http_checks.headers]
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = "443"
 
-[deploy]
-  release_command = "npm run build"
+  [[services.tcp_checks]]
+      grace_period = "1s"
+      interval = "15s"
+      restart_limit = 0
+      timeout = "2s"
 
-[processes]
-  app = "node app.js"
+  [[services.http_checks]]
+      interval = 10000
+      grace_period = "5s"
+      method = "get"
+      path = "/health"
+      protocol = "http"
+      restart_limit = 0
+      timeout = 2000
+      tls_skip_verify = false
+      [services.http_checks.headers]

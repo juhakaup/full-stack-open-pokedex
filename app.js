@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 
 // Heroku dynamically sets a port
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 8080
 
 app.use(express.static('dist'))
 
@@ -16,6 +16,6 @@ app.get('/version', (req, res) => {
 
 app.listen(PORT, () => {
   /* eslint-disable no-console */
-  console.log('server started on port 5000')
+  console.log('server started on port 8080')
   /* eslint-enable no-console */
 })
